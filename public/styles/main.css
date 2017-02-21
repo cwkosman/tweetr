@@ -4,6 +4,4 @@
 @import url("nav.css");
 @import url("new-tweet.css");
 @import url("tweet-log.css");
-@import url("tweet-log-hover.css");
-/* BLOAT? */
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");

@@ -3,6 +3,7 @@
   border-radius: 0.5em;
   margin-top: 0.5em;
 }
+
 .tweet-age {
   float:left;
   margin:0;
@@ -46,6 +47,10 @@
   opacity: 0;
 }
 
+.tweet-icons .fa {
+  padding: 0 0 0 0.5em;
+}
+
 /*clearfix*/
 .tweet-header::after, .tweet-footer::after {
     content:"";
@@ -61,4 +66,12 @@
   float:left;
   margin: 0;
   padding: 0 0 0 0.5em;
+}
+
+.tweet:hover {
+  border: 1px solid #333;
+}
+
+.tweet:hover .tweet-header, .tweet:hover .tweet-icons {
+  opacity: 1.0;
 }
