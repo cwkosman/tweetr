@@ -1,0 +1,7 @@
+.tweet:hover {
+  border: 1px solid #333;
+}
+
+.tweet:hover .tweet-header, .tweet:hover .tweet-icons {
+  opacity: 1.0;
+}

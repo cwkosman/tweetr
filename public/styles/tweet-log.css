@@ -1,7 +1,64 @@
 .tweet {
-  background-color:red;
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+  margin-top: 0.5em;
+}
+.tweet-age {
+  float:left;
+  margin:0;
 }
 
-.tweetlog {
+.tweet-avatar {
+  float: left;
+  height: 50px;
+  width: 50px;
+}
 
+.tweet-content {
+  padding: 1em 1.5em;
+  font-size: 1.1em;
+}
+
+.tweet-footer {
+  border-top: 1px solid #eee;
+  line-height: 2.5em;
+  padding: 0 1em;
+}
+
+.tweet-handle {
+  color: #aaa;
+  float: right;
+  line-height: 1.9em;
+  margin: 0;
+  /*would text-align be more appropriate?*/
+}
+
+.tweet-header {
+  background: #eee;
+  border-radius: 0.5em 0.5em 0 0;
+  opacity: 0.65;
+  padding: 1em;
+}
+
+.tweet-icons {
+  float:right;
+  color: #00a087;
+  opacity: 0;
+}
+
+/*clearfix*/
+.tweet-header::after, .tweet-footer::after {
+    content:"";
+    display:table;
+    clear:both;
+}
+
+.tweet, .tweet-header, .tweet-icons {
+  transition: all 0.3s;
+}
+
+.tweet-poster {
+  float:left;
+  margin: 0;
+  padding: 0 0 0 0.5em;
 }
