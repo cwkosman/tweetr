@@ -3,21 +3,26 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
+ *, *:before, *:after {
+   box-sizing: inherit;
+ }
+ 
+ body {
+   background-color: #eee;
+   color: #244751;
+   font-family: 'Roboto Condensed', sans-serif;
+   margin: 0;
+ }
+
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
-}
 
-/*
- * Global layout stuff
- */
-
-body {
-  margin: 0;
-  color: #244751;
-  background-color: #eee;
+main {
+  background: white;
+  margin: auto;
+  padding: 140px 2em 2em 2em;
+  width: 450px;
 }
 
 /*
