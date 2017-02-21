@@ -3,26 +3,25 @@
   <head>
     <title>Tweeter - Home Page</title>
     <link rel="stylesheet" href="/styles/main.css">
+    <script src="/vendor/jquery-2.2.3.min.js"></script>
+    <script src="/scripts/composer-char-counter.js"></script>
   </head>
   <body>
-    <!-- Top nav bar (fixed) -->
     <nav class="navbar">
       <img class="navbar-logo" src="/images/bird.png">
       <span class="navbar-header">Tweeter</span>
     </nav>
-
-    <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="newtweet">
-    <h2 class="newtweet-header">Compose Tweet</h2>
-    <form method="post" action="/tweets" >
-      <textarea class="newtweet-textarea" name="text" placeholder="What are you humming about?" cols="100%"></textarea>
-      <input type="submit" value="Tweet">
-      <span class="newtweet-counter">140</span>
-    </form>
-  </section>
+        <h2 class="newtweet-header">Compose Tweet</h2>
+        <form method="post" action="/tweets" >
+          <textarea class="newtweet-textarea" name="text" placeholder="What are you humming about?" cols="100%"></textarea>
+          <input type="submit" value="Tweet">
+          <span class="newtweet-counter">140</span>
+        </form>
+      </section>
+      <section class="tweetlog">
     </main>
-    <script src="/vendor/jquery-2.2.3.min.js"></script>
-    <script src="/scripts/app.js"></script>
+
   </body>
 </html>
