@@ -72,12 +72,8 @@ $(document).ready(function() {
     $.ajax({
       url: '/tweets',
       method: 'GET',
-      dataType: 'json',
-      //TODO implement as .then instead
-      success: function(data) {
-        renderAllTweets(data, renderTweet, $(".tweet-log"));
-      }
-    });
+      dataType: 'json'
+    }).then(data => renderAllTweets(data, renderTweet, $(".tweet-log")));
   }
 
   loadTweets();
@@ -91,27 +87,23 @@ $(document).ready(function() {
     });
   }
 
-  const $form = $('#create-tweet');
-  //TODO: DRY?
-  $form.find("#submit-tweet").on('click', function(event) {
+  $("#submit-tweet").on('click', function(event) {
     event.preventDefault();
+    const $form = $(this).closest("#create-tweet");
+    const $flash = $form.find("newtweet-flash");
     const charMax = 140;
-    const $flash = $form.find(".newtweet-flash");
     const flashTimeout = 3000;
     const $typed = $form.find(".newtweet-textarea").val().length;
     if ($typed && $typed <= charMax) {
-      //TODO add server validation
       $.ajax({
         data: $form.serialize(),
         method: 'POST',
-        //TODO: implement as .then instead
-        success: function() {
-          $(".tweet-log").empty();
-          loadTweets();
-          $form[0].reset();
-          $form.find(".newtweet-counter").text(charMax);
-        },
         url: '/tweets'
+      }).then(() => {
+        $(".tweet-log").empty();
+        loadTweets();
+        $form[0].reset();
+        $form.find(".newtweet-counter").text(charMax);
       });
     } else if (!$typed) {
       showFlash($flash, "Nothing typed!", flashTimeout);
