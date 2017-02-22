@@ -12,10 +12,11 @@
     <main class="container">
       <section class="newtweet">
         <h1 class="newtweet-header">Compose Tweet</h1>
-        <form method="post" action="/tweets" >
+        <form id="create-tweet">
           <textarea class="newtweet-textarea" name="text" placeholder="What are you humming about?" cols="100%"></textarea>
-          <input type="submit" value="Tweet">
+          <button id="submit-tweet" type="submit">Tweet</button>
           <span class="newtweet-counter">140</span>
+          <p class="newtweet-flash"></p>
         </form>
       </section>
       <section class="tweet-log">

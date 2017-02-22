@@ -1,23 +1,23 @@
 function timeSince(date) {
   var seconds = Math.floor((new Date() - date) / 1000);
   var interval = Math.floor(seconds / 31536000);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " years";
   }
   interval = Math.floor(seconds / 2592000);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " months";
   }
   interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " days";
   }
   interval = Math.floor(seconds / 3600);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " hours";
   }
   interval = Math.floor(seconds / 60);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " minutes";
   }
   return Math.floor(seconds) + " seconds";
@@ -53,7 +53,7 @@ function createTweetElement(database) {
 }
 
 function renderTweet(tweet, tweetLog) {
-  createTweetElement(tweet).appendTo(tweetLog);
+  createTweetElement(tweet).prependTo(tweetLog);
 }
 
 function renderAllTweets(data, cb, location) {
@@ -108,4 +108,59 @@ var data = [
   }
 ];
 
-renderAllTweets(data, renderTweet, $(".tweet-log"));
+$(document).ready( function() {
+
+  function loadTweets() {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        renderAllTweets(data, renderTweet, $(".tweet-log"));
+      }
+    });
+  }
+
+  loadTweets();
+
+  const $form = $('#create-tweet');
+  $form.find("#submit-tweet").on('click', function(event) {
+    event.preventDefault();
+    const charMax = 140;
+    const $flash = $(".newtweet-flash");
+    let $typed = $form.find(".newtweet-textarea").val().length;
+    if ($typed && $typed <= charMax) {
+      $.ajax({
+        data: $form.serialize(),
+        method: 'POST',
+        success: function() {
+          loadTweets();
+          $form[0].reset();
+          $form.find(".newtweet-counter").text("140");
+        },
+        url: '/tweets'
+      });
+      return;
+    }
+
+    if (!$typed) {
+      $flash.text("Nothing typed!");
+      $flash.slideDown(function() {
+        setTimeout(function() {
+          $flash.slideUp();
+        }, 3000);
+      });
+      return;
+    }
+
+    if ($typed > charMax) {
+      $flash.text("Tweet exceeds character limit!");
+      $flash.slideDown(function() {
+        setTimeout(function() {
+          $flash.slideUp();
+        }, 3000);
+      });
+      return;
+    }
+  });
+});
