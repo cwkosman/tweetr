@@ -1,31 +1,37 @@
 function timeSince(date) {
   var seconds = Math.floor((new Date() - date) / 1000);
-  var interval = Math.floor(seconds / 31536000);
-  if (interval >= 1) {
-    return interval + " years";
-  }
-  interval = Math.floor(seconds / 2592000);
-  if (interval >= 1) {
-    return interval + " months";
-  }
-  interval = Math.floor(seconds / 86400);
-  if (interval >= 1) {
-    return interval + " days";
-  }
-  interval = Math.floor(seconds / 3600);
-  if (interval >= 1) {
-    return interval + " hours";
-  }
-  interval = Math.floor(seconds / 60);
-  if (interval >= 1) {
-    return interval + " minutes";
-  }
-  return Math.floor(seconds) + " seconds";
+  const secondsPerMinute = 60;
+  const secondsPerHour = secondsPerMinute * 60;
+  const secondsPerDay = secondsPerHour * 24;
+  const secondsPerMonth = secondsPerDay * 30;
+  const secondsPerYear = secondsPerDay * 365;
+  const intervals = [{
+    seconds: secondsPerYear,
+    unit: 'years'
+  }, {
+    seconds: secondsPerMonth,
+    unit: 'months'
+  }, {
+    seconds: secondsPerDay,
+    unit: 'days'
+  }, {
+    seconds: secondsPerHour,
+    unit: 'hour'
+  }, {
+    seconds: secondsPerMinute,
+    unit: 'minutes'
+  }];
+  //TODO DRY and/or 'just now'
+  let chosenInterval = intervals.find(function (entry) {
+    return Math.floor(seconds / entry.seconds) >= 1;
+  }) || { seconds: 1, unit: 'seconds' };
+  return `${Math.floor(seconds / chosenInterval.seconds)} ${chosenInterval.unit}`;
 }
 
 function createTweetElement(database) {
   //Destructuring in ES6
-  // const {name, avatars} = database.user,
+  // const {name, avatars} = database.user
+  //Split into seperate functions
   let $tweetImage = $('<img>', {
     "class": "tweet-avatar",
     src: database.user.avatars.small
@@ -108,7 +114,7 @@ var data = [
   }
 ];
 
-$(document).ready( function() {
+$(document).ready(function() {
 
   function loadTweets() {
     $.ajax({
@@ -123,12 +129,23 @@ $(document).ready( function() {
 
   loadTweets();
 
+  function showFlash(flash, message, timeout) {
+    flash.text(message);
+    flash.slideDown(function() {
+      setTimeout(function() {
+        flash.slideUp();
+      }, timeout);
+    });
+  }
+
   const $form = $('#create-tweet');
+  //TODO: DRY?
   $form.find("#submit-tweet").on('click', function(event) {
     event.preventDefault();
     const charMax = 140;
-    const $flash = $(".newtweet-flash");
-    let $typed = $form.find(".newtweet-textarea").val().length;
+    const $flash = $form.find(".newtweet-flash");
+    const flashTimeout = 3000;
+    const $typed = $form.find(".newtweet-textarea").val().length;
     if ($typed && $typed <= charMax) {
       $.ajax({
         data: $form.serialize(),
@@ -136,31 +153,14 @@ $(document).ready( function() {
         success: function() {
           loadTweets();
           $form[0].reset();
-          $form.find(".newtweet-counter").text("140");
+          $form.find(".newtweet-counter").text(charMax);
         },
         url: '/tweets'
       });
-      return;
-    }
-
-    if (!$typed) {
-      $flash.text("Nothing typed!");
-      $flash.slideDown(function() {
-        setTimeout(function() {
-          $flash.slideUp();
-        }, 3000);
-      });
-      return;
-    }
-
-    if ($typed > charMax) {
-      $flash.text("Tweet exceeds character limit!");
-      $flash.slideDown(function() {
-        setTimeout(function() {
-          $flash.slideUp();
-        }, 3000);
-      });
-      return;
+    } else if (!$typed) {
+      showFlash($flash, "Nothing typed!", flashTimeout);
+    } else if ($typed > charMax) {
+      showFlash($flash, "Too long, blabbermouth!", flashTimeout);
     }
   });
 
