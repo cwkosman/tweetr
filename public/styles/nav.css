@@ -10,6 +10,22 @@
   z-index: 100;
 }
 
+.navbar-compose {
+	background-color:#44c789;
+	border-radius:0.5em;
+	border:1px solid #18ab40;
+  color: #e8fdff;
+	cursor:pointer;
+	float:right;
+  line-height: 24px;
+  margin: 12px 0;
+  padding: 16px 30px;
+}
+
+.navbar-compose:hover {
+  background-color:#5cbf6a;
+}
+
 .navbar-header {
   font-size: 2em;
   line-height: 80px;
