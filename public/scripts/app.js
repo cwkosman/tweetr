@@ -163,4 +163,11 @@ $(document).ready( function() {
       return;
     }
   });
+
+  $(".navbar-compose").on("click", function() {
+    const $newTweet = $(".newtweet");
+    $newTweet.slideToggle("fast");
+    $newTweet.find(".newtweet-textarea").focus();
+  });
+
 });
