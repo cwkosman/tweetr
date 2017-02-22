@@ -66,54 +66,6 @@ function renderAllTweets(data, cb, location) {
   data.forEach(entry => cb(entry, location));
 }
 
-
-var data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-];
-
 $(document).ready(function() {
 
   function loadTweets() {
@@ -121,6 +73,7 @@ $(document).ready(function() {
       url: '/tweets',
       method: 'GET',
       dataType: 'json',
+      //TODO implement as .then instead
       success: function(data) {
         renderAllTweets(data, renderTweet, $(".tweet-log"));
       }
@@ -129,11 +82,11 @@ $(document).ready(function() {
 
   loadTweets();
 
-  function showFlash(flash, message, timeout) {
-    flash.text(message);
-    flash.slideDown(function() {
+  function showFlash(flashElement, message, timeout) {
+    flashElement.text(message);
+    flashElement.slideDown(function() {
       setTimeout(function() {
-        flash.slideUp();
+        flashElement.slideUp();
       }, timeout);
     });
   }
@@ -147,10 +100,13 @@ $(document).ready(function() {
     const flashTimeout = 3000;
     const $typed = $form.find(".newtweet-textarea").val().length;
     if ($typed && $typed <= charMax) {
+      //TODO add server validation
       $.ajax({
         data: $form.serialize(),
         method: 'POST',
+        //TODO: implement as .then instead
         success: function() {
+          $(".tweet-log").empty();
           loadTweets();
           $form[0].reset();
           $form.find(".newtweet-counter").text(charMax);

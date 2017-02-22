@@ -1,7 +1,10 @@
 .navbar {
+  align-items: center;
   background: #00a087;
   color: #e8fdff;
+  display: flex;
   height: 80px;
+  justify-content: space-between;
   left: 0;
   padding: 0 2em;
   position: fixed;
@@ -16,10 +19,8 @@
 	border:1px solid #18ab40;
   color: #e8fdff;
 	cursor:pointer;
-	float:right;
   line-height: 24px;
-  margin: 12px 0;
-  padding: 16px 30px;
+  padding: 1em 1.5em;
 }
 
 .navbar-compose:hover {
@@ -32,12 +33,12 @@
   padding: 0 0 0 10px;
 }
 
+.navbar-left {
+  align-items: center;
+  display:flex;
+}
+
 .navbar-logo {
   height:80px;
   width:80px;
-}
-
-.navbar-header,
-.navbar-logo {
-  float:left;
 }

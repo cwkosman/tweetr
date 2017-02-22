@@ -4,6 +4,18 @@
   margin-top: 0.5em;
 }
 
+.tweet, .tweet-header, .tweet-icons {
+  transition: all 0.3s;
+}
+
+.tweet:hover {
+  border: 1px solid #333;
+}
+
+.tweet:hover .tweet-header, .tweet:hover .tweet-icons {
+  opacity: 1.0;
+}
+
 .tweet-age {
   float:left;
   margin:0;
@@ -41,6 +53,13 @@
   padding: 1em;
 }
 
+/*clearfix*/
+.tweet-header::after, .tweet-footer::after {
+    content:"";
+    display:table;
+    clear:both;
+}
+
 .tweet-icons {
   float:right;
   color: #00a087;
@@ -51,27 +70,8 @@
   padding: 0 0 0 0.5em;
 }
 
-/*clearfix*/
-.tweet-header::after, .tweet-footer::after {
-    content:"";
-    display:table;
-    clear:both;
-}
-
-.tweet, .tweet-header, .tweet-icons {
-  transition: all 0.3s;
-}
-
 .tweet-poster {
   float:left;
   margin: 0;
   padding: 0 0 0 0.5em;
-}
-
-.tweet:hover {
-  border: 1px solid #333;
-}
-
-.tweet:hover .tweet-header, .tweet:hover .tweet-icons {
-  opacity: 1.0;
 }

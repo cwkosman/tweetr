@@ -1,7 +1,6 @@
 "use strict";
 
 const userHelper    = require("../lib/util/user-helper");
-
 const express       = require('express');
 const tweetsRoutes  = express.Router();
 
@@ -18,8 +17,13 @@ module.exports = function(DataHelpers) {
   });
 
   tweetsRoutes.post("/", function(req, res) {
+    const charMax = 140;
     if (!req.body.text) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
+      return;
+    }
+    if (req.body.text.length > charMax) {
+      res.status(400).json({ error: `invalid request: data of POST body exceeds ${charMax} character limit`});
       return;
     }
 
@@ -36,7 +40,6 @@ module.exports = function(DataHelpers) {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
-        //TODO? send back only tweet date to pass to renderTweet?
         res.status(201).send();
       }
     });

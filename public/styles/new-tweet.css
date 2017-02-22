@@ -14,13 +14,13 @@
   float: right;
 }
 
+.newtweet-header {
+  border-bottom: 1px solid #224;
+}
+
 .newtweet-flash {
   display: none;
   color: red;
-}
-
-.newtweet-header {
-  border-bottom: 1px solid #224;
 }
 
 .newtweet-textarea {

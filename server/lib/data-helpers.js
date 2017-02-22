@@ -1,27 +1,17 @@
 "use strict";
 
-// Simulates the kind of delay we see with network or filesystem operations
-const simulateDelay = require("./util/simulate-delay");
-
-// Defines helper functions for saving and getting tweets, using the database `db`
-module.exports = function makeDataHelpers(db) {
+// Defines helper functions for saving and getting tweets, using the database db`
+module.exports = function makeDataHelpers(db, collection) {
   return {
 
-    // Saves a tweet to `db`
+    // Saves a tweet to the given db and collection
     saveTweet: function(newTweet, callback) {
-      simulateDelay(() => {
-        db.tweets.push(newTweet);
-        callback(null, true);
-      });
+      db.collection(collection).insertOne(newTweet, callback);
     },
 
     // Get all tweets in `db`, sorted by newest first
     getTweets: function(callback) {
-      simulateDelay(() => {
-        const sortNewestFirst = (a, b) => a.created_at - b.created_at;
-        callback(null, db.tweets.sort(sortNewestFirst));
-      });
+      db.collection(collection).find().sort("created_at", 1).toArray(callback);
     }
-
   };
-}
+};
