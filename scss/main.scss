@@ -13,6 +13,8 @@ $primary-color: #00a087;
 $dark-color: #244751;
 $trans-time: 0.3s;
 
+/*Element selectors*/
+
 body {
  margin: 0;
  font-family: $font-stack;
@@ -30,8 +32,10 @@ main {
   background: white;
   margin: auto;
   padding: $nav-height*1.5 2em 2em 2em;
-  width: 450px;
+  width: 600px;
 }
+
+/*Class selectors*/
 
 .danger {
   color: $danger;

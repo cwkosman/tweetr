@@ -16,7 +16,7 @@ function timeSince(date) {
     unit: 'days'
   }, {
     seconds: secondsPerHour,
-    unit: 'hour'
+    unit: 'hours'
   }, {
     seconds: secondsPerMinute,
     unit: 'minutes'
