@@ -90,7 +90,7 @@ $(document).ready(function() {
   $("#submit-tweet").on('click', function(event) {
     event.preventDefault();
     const $form = $(this).closest("#create-tweet");
-    const $flash = $form.find("newtweet-flash");
+    const $flash = $form.find(".newtweet-flash");
     const charMax = 140;
     const flashTimeout = 3000;
     const $typed = $form.find(".newtweet-textarea").val().length;
