@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
-    "local": "./node_modules/.bin/nodemon --watch server -e js server/index.js"
+    "local": "./node_modules/.bin/nodemon --watch server -e js server/index.js",
+    "build-css": "node-sass --include-path scss scss/main.scss public/styles/main.css"
   },
   "author": "Lighthouse Labs",
   "license": "ISC",
@@ -18,6 +19,7 @@
     "mongodb": "^2.2.24"
   },
   "devDependencies": {
-    "nodemon": "^1.9.2"
+    "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0"
   }
 }
