@@ -2,12 +2,14 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i");
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 /*Variables*/
+/*Mixins*/
 /*Element selectors*/
 body {
   margin: 0;
   font-family: "Roboto Condensed", sans-serif; }
 
 html {
+  background: #f0fefa;
   box-sizing: border-box; }
 
 *, *::before, *::after {
@@ -24,10 +26,10 @@ main {
   color: red; }
 
 .navbar {
-  align-items: center;
   background: #00a087;
-  display: flex;
   height: 80px;
+  align-items: center;
+  display: flex;
   justify-content: space-between;
   left: 0;
   padding: 0 1.5em;
@@ -58,7 +60,7 @@ main {
     width: 80px; }
 
 .newtweet {
-  background: #ddd;
+  background: #eee;
   border: 1px solid gray;
   border-radius: 0.5em;
   display: none;
@@ -95,7 +97,10 @@ main {
     padding: 1em 1.5em;
     font-size: 1.1em; }
   .tweet-footer {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #eee;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     line-height: 2.5em;
     padding: 0 1em; }
   .tweet-handle {
@@ -104,20 +109,22 @@ main {
     line-height: 1.9em;
     margin: 0; }
   .tweet-header {
-    background: #ddd;
+    background: #eee;
     border-radius: 0.5em 0.5em 0 0;
     opacity: 0.65;
     padding: 1em; }
-  .tweet-header::after, .tweet-footer::after {
+  .tweet-header::after {
     content: "";
     display: table;
     clear: both; }
   .tweet-icons {
-    float: right;
     color: #bada55;
+    margin: 0;
     opacity: 0; }
     .tweet-icons .fa {
-      padding: 0 0 0 0.5em; }
+      padding: 0 0 0 1em; }
+  .tweet-likes {
+    padding: 0 0 0 0.5em; }
   .tweet-poster {
     float: left;
     margin: 0;
