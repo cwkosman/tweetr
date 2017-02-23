@@ -1,1 +1,1 @@
-nodemon -e scss -x "npm run build-css"
+nodemon -L -e scss -x "npm run build-css"
