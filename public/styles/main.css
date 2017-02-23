@@ -1,3 +1,146 @@
+@import url(../public/vendor/normalize-4.1.1.css);
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+/*Variables*/
+/*Selectors*/
 body {
+  margin: 0; }
+
+html {
+  box-sizing: border-box; }
+
+*, *::before, *::after {
+  box-sizing: inherit; }
+
+main {
+  background: #eee;
+  margin: auto;
+  padding: 140px 2em 2em 2em;
+  width: 450px; }
+
+.navbar {
+  align-items: center;
+  background: #00a087;
+  color: #e8fdff;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 2em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100; }
+
+.navbar-compose {
+  background-color: #44c789;
+  border-radius: 0.5em;
+  border: 1px solid #18ab40;
+  color: #e8fdff;
+  cursor: pointer;
+  line-height: 24px;
+  padding: 1em 1.5em; }
+
+.navbar-compose:hover {
+  background-color: #5cbf6a; }
+
+.navbar-header {
+  font-size: 2em;
+  line-height: 80px;
+  padding: 0 0 0 10px; }
+
+.navbar-left {
+  align-items: center;
+  display: flex; }
+
+.navbar-logo {
+  height: 80px;
+  width: 80px; }
+
+.danger {
+  color: red; }
+
+.newtweet {
+  background: #eee;
+  border: 1px solid gray;
+  border-radius: 0.5em;
+  display: none;
+  padding: 0 1em 1em 1em; }
+
+.newtweet-counter {
+  float: right; }
+
+.newtweet-header {
+  border-bottom: 1px solid #224; }
+
+.newtweet-flash {
+  display: none;
+  color: red; }
+
+.newtweet-textarea {
+  padding: 0.5em;
+  width: 100%; }
+
+.tweet {
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+  margin-top: 0.5em; }
+
+.tweet, .tweet-header, .tweet-icons {
+  transition: all 0.3s; }
+
+.tweet:hover {
+  border: 1px solid #333; }
+
+.tweet:hover .tweet-header, .tweet:hover .tweet-icons {
+  opacity: 1.0; }
+
+.tweet-age {
+  float: left;
+  margin: 0; }
+
+.tweet-avatar {
+  float: left;
+  height: 50px;
+  width: 50px; }
+
+.tweet-content {
+  padding: 1em 1.5em;
+  font-size: 1.1em; }
+
+.tweet-footer {
+  border-top: 1px solid #eee;
+  line-height: 2.5em;
+  padding: 0 1em; }
+
+.tweet-handle {
+  color: #aaa;
+  float: right;
+  line-height: 1.9em;
   margin: 0;
-  background-color: #bada55; }
+  /*would text-align be more appropriate?*/ }
+
+.tweet-header {
+  background: #eee;
+  border-radius: 0.5em 0.5em 0 0;
+  opacity: 0.65;
+  padding: 1em; }
+
+/*clearfix*/
+.tweet-header::after, .tweet-footer::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.tweet-icons {
+  float: right;
+  color: #00a087;
+  opacity: 0; }
+
+.tweet-icons .fa {
+  padding: 0 0 0 0.5em; }
+
+.tweet-poster {
+  float: left;
+  margin: 0;
+  padding: 0 0 0 0.5em; }

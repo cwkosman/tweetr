@@ -1,3 +1,33 @@
+.danger {
+  color: red;
+}
+
+.newtweet {
+  background: #eee;
+  border: 1px solid gray;
+  border-radius: 0.5em;
+  display: none;
+  padding: 0 1em 1em 1em;
+}
+
+.newtweet-counter {
+  float: right;
+}
+
+.newtweet-header {
+  border-bottom: 1px solid #224;
+}
+
+.newtweet-flash {
+  display: none;
+  color: red;
+}
+
+.newtweet-textarea {
+  padding: 0.5em;
+  width: 100%;
+}
+
 .tweet {
   border: 1px solid #aaa;
   border-radius: 0.5em;
