@@ -1,5 +1,5 @@
 "use strict";
-
+require('dotenv').config();
 // Basic express setup:
 
 const PORT          = 8080;
@@ -29,7 +29,7 @@ const tweetsRoutes = require("./routes/tweets");
 //Connect to Mongo for the db, passing db along to the chain of d
 //dependent module functions.
 const MongoClient = require("mongodb").MongoClient;
-const MONGODB_URI = "mongodb://localhost:27017/tweeter";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err) {
