@@ -1,0 +1,41 @@
+.navbar {
+  background: $primary-color;
+  height: $nav-height;
+  @include flex-space
+  left: 0;
+  padding: 0 $space;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+
+  &-compose {
+    background-color:#44c789;
+  	border-radius: 0.5em;
+  	border:1px solid #18ab40;
+    color: white;
+  	cursor:pointer;
+    padding: $space 1.5*$space;
+
+    &:hover {
+      background-color:#5cbf6a;
+    }
+  }
+
+  &-header {
+    color:white;
+    font-size: 2em;
+    line-height: $nav-height;
+    padding: 0 0 0 $space;
+  }
+
+  &-left {
+    align-items: center;
+    display: flex;
+  }
+
+  &-logo {
+    height:$nav-height;
+    width:$nav-height;
+  }
+}

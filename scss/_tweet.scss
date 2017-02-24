@@ -1,0 +1,97 @@
+.danger {
+  color: $danger;
+}
+
+.tweet {
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+  margin-top: 1em;
+  transition: all $trans-time;
+  &:hover {
+    border-color: #333;
+    & .tweet-header, & .fa, & .tweet-likes {
+      opacity: 1;
+    }
+  }
+
+  &-age {
+    float:left;
+    margin:0;
+  }
+
+  &-avatar {
+    float: left;
+    height: 50px;
+    width: 50px;
+  }
+
+  &-content {
+    padding: $space 1.5*$space;
+    font-size: 1.1em;
+  }
+
+  &-footer {
+    border-top: 1px solid $lightgrey;
+    @include flex-space
+    line-height: 2.5em;
+    padding: 0 $space;
+  }
+
+  &-handle {
+    color: #aaa;
+    float: right;
+    line-height: 1.9em;
+    margin: 0;
+  }
+
+  &-header {
+    background: $lightgrey;
+    border-radius: 0.5em 0.5em 0 0;
+    opacity: 0.65;
+    padding: 1em;
+    transition: all $trans-time;
+  }
+
+  &-header::after {
+    content:"";
+    display:table;
+    clear:both;
+  }
+
+  &-icons {
+    color: $accent-color;
+    margin: 0;
+
+    .fa {
+      padding: 0 0.5em;
+      opacity: 0;
+      transition: all $trans-time;
+
+      &-heart {
+      opacity: 1;
+      padding: 0 0.5em;
+
+        &:hover {
+          color: #faa3b6;
+          cursor: pointer;
+          transform: scale(1.15);
+        }
+
+        &.tweet-liked {
+          color: #872334;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &-poster {
+    float:left;
+    margin: 0;
+    padding: 0 0 0 $space;
+  }
+
+  &-likes {
+    transition: all $trans-time;
+  }
+}

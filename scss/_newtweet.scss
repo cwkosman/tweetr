@@ -1,0 +1,25 @@
+.newtweet {
+  background: $lightgrey;
+  border: 1px solid gray;
+  border-radius: 0.5em;
+  display: none;
+  padding: $space;
+
+  &-counter {
+    float: right;
+  }
+
+  &-header {
+    border-bottom: 1px solid #224;
+  }
+
+  &-flash {
+    display: none;
+    color: $danger;
+  }
+
+  &-textarea {
+    padding: $space;
+    width: 100%;
+  }
+}

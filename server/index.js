@@ -5,10 +5,21 @@
 const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
+const sassMiddleware = require('node-sass-middleware');
+const path           = require('path');
 const app           = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+app.use(sassMiddleware({
+  src: path.join(__dirname, "..", "scss"),
+  dest: path.join(__dirname, "..", "public", "styles"),
+  force: true,
+  debug: true,
+  outputStyle: 'compressed',
+  prefix: "/styles"
+}));
 
 //Return the functions created by the modules, but do not pass an argument to call them.
 const DataHelpers = require("./lib/data-helpers.js");

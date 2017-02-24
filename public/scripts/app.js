@@ -127,6 +127,7 @@ $(document).ready(function() {
   });
 
   $("#tweet-log").on("click", ".like-tweet", function () {
+    //TODO: Move to after successful ajax call
     const isLiked = $(this).data("liked");
     if (isLiked) {
       $(this).data("liked", "");

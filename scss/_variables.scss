@@ -1,0 +1,23 @@
+$accent-color: #bada55;
+$background: #f0fefa;
+$danger: red;
+$tablet-width: 768px;
+$font-stack: 'Roboto Condensed', sans-serif;
+$lightgrey: #eee;
+$nav-height: 80px;
+$primary-color: #00a087;
+$dark-color: #244751;
+$space: 1em;
+$trans-time: 0.3s;
+
+@mixin flex-space {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
