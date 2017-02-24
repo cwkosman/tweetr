@@ -6,6 +6,7 @@ body {
 html {
   background: $background;
   box-sizing: border-box;
+  color: $text-color;
 }
 
 *, *::before, *::after {
@@ -15,10 +16,11 @@ html {
 main {
   background: white;
   margin: auto;
-  padding: 1.5*$nav-height 2*$space 2*$space 2*$space;
+  padding: 1.1*$nav-height 1*$space 1*$space 1*$space;
+  max-width:550px;
 
   @include tablet {
-    max-width: 700px;
+    padding: 1.5*$nav-height 2*$space 2*$space 2*$space
   }
 
 }

@@ -1,5 +1,5 @@
 .newtweet {
-  background: $lightgrey;
+  background: mix($lightgrey, $primary-color, 85%);
   border: 1px solid gray;
   border-radius: 0.5em;
   display: none;

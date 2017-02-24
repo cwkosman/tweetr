@@ -6,9 +6,9 @@ $font-stack: 'Roboto Condensed', sans-serif;
 $lightgrey: #eee;
 $nav-height: 80px;
 $primary-color: #00a087;
-$dark-color: #244751;
 $space: 1em;
 $trans-time: 0.3s;
+$text-color: darken($primary-color, 20);
 
 @mixin flex-space {
   align-items: center;

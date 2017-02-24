@@ -24,9 +24,12 @@
 
   &-header {
     color:white;
-    font-size: 2em;
     line-height: $nav-height;
     padding: 0 0 0 $space;
+
+    @include tablet {
+      font-size: 2em;
+    }
   }
 
   &-left {
@@ -35,7 +38,12 @@
   }
 
   &-logo {
-    height:$nav-height;
-    width:$nav-height;
+    height:0.5*$nav-height;
+    width:0.5*$nav-height;
+
+    @include tablet {
+      height: $nav-height;
+      width: $nav-height;
+    }
   }
 }

@@ -26,8 +26,12 @@
   }
 
   &-content {
-    padding: $space 1.5*$space;
+    padding: 0.5*$space $space;
     font-size: 1.1em;
+
+    @include tablet {
+      padding: $space 1.5*$space
+    }
   }
 
   &-footer {
