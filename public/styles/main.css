@@ -80,11 +80,11 @@ main {
   border: 1px solid #aaa;
   border-radius: 0.5em;
   margin-top: 1em; }
-  .tweet, .tweet .tweet-header, .tweet .tweet-icons {
+  .tweet, .tweet .tweet-header, .tweet .fa, .tweet .tweet-likes {
     transition: all 0.3s; }
   .tweet:hover {
     border-color: #333; }
-    .tweet:hover .tweet-header, .tweet:hover .tweet-icons {
+    .tweet:hover .tweet-header, .tweet:hover .fa, .tweet:hover .tweet-likes {
       opacity: 1; }
   .tweet-age {
     float: left;
@@ -119,12 +119,21 @@ main {
     clear: both; }
   .tweet-icons {
     color: #bada55;
-    margin: 0;
-    opacity: 0; }
+    margin: 0; }
     .tweet-icons .fa {
-      padding: 0 0 0 1em; }
-  .tweet-likes {
-    padding: 0 0 0 0.5em; }
+      padding: 0 0.5em;
+      opacity: 0; }
+      .tweet-icons .fa-heart {
+        opacity: 1;
+        padding: 0 0.5em;
+        transition: all 0.3s; }
+        .tweet-icons .fa-heart:hover {
+          color: #faa3b6;
+          cursor: pointer;
+          transform: scale(1.15); }
+        .tweet-icons .fa-heart.tweet-liked {
+          color: #872334;
+          opacity: 1; }
   .tweet-poster {
     float: left;
     margin: 0;

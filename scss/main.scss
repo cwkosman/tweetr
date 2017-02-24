@@ -124,12 +124,12 @@ main {
   border: 1px solid #aaa;
   border-radius: 0.5em;
   margin-top: 1em;
-  &, & .tweet-header, & .tweet-icons {
+  &, & .tweet-header, & .fa, & .tweet-likes {
     transition: all $trans-time;
   }
   &:hover {
     border-color: #333;
-    & .tweet-header, & .tweet-icons {
+    & .tweet-header, & .fa, & .tweet-likes {
       opacity: 1;
     }
   }
@@ -180,15 +180,28 @@ main {
   &-icons {
     color: $accent-color;
     margin: 0;
-    opacity: 0;
 
     .fa {
-      padding: 0 0 0 1em;
-    }
-  }
+      padding: 0 0.5em;
+      opacity: 0;
 
-  &-likes {
-    padding: 0 0 0 0.5em;
+      &-heart {
+      opacity: 1;
+      padding: 0 0.5em;
+      transition: all $trans-time;
+
+        &:hover {
+          color: #faa3b6;
+          cursor: pointer;
+          transform: scale(1.15);
+        }
+
+        &.tweet-liked {
+          color: #872334;
+          opacity: 1;
+        }
+      }
+    }
   }
 
   &-poster {

@@ -28,36 +28,40 @@ function timeSince(date) {
   return `${Math.floor(seconds / chosenInterval.seconds)} ${chosenInterval.unit}`;
 }
 
-function createTweetElement(tweetdata) {
+function createTweetElement(tweetData) {
   //Destructuring in ES6
-  // const {name, avatars} = tweetdata.user
+  // const {name, avatars} = tweetData.user
   //Split into seperate functions
-  let $tweetImage = $('<img>', {
+  const $tweetImage = $('<img>', {
     "class": "tweet-avatar",
-    src: tweetdata.user.avatars.small
+    src: tweetData.user.avatars.small
   });
-  let $tweetPoster = $('<h2></h2>', {
+  const $tweetPoster = $('<h2></h2>', {
     "class": "tweet-poster",
-    text: tweetdata.user.name
+    text: tweetData.user.name
   });
-  let $tweetHandle = $('<p></p>', {
+  const $tweetHandle = $('<p></p>', {
     "class": "tweet-handle",
-    text: tweetdata.user.handle
+    text: tweetData.user.handle
   });
-  let $tweetHeader = $('<header class="tweet-header"></header>').append($tweetImage, $tweetPoster, $tweetHandle);
-  let $tweetBody = $('<p></p>', {
+  const $tweetHeader = $('<header class="tweet-header"></header>').append($tweetImage, $tweetPoster, $tweetHandle);
+  const $tweetBody = $('<p></p>', {
     "class": "tweet-content",
-    text: tweetdata.content.text
+    text: tweetData.content.text
   });
-  let $tweetAge = $('<p></p>', {
+  const $tweetAge = $('<p></p>', {
     "class": "tweet-age",
-    text: `${timeSince(tweetdata.created_at)} ago`
+    text: `${timeSince(tweetData.created_at)} ago`
   });
-  let $tweetIcons = $('<ul class="tweet-icons"></ul>');
-  let $iconShare = $('<li class="fa fa-share"></li>');
-  let $iconRetweet = $('<li class="fa fa-retweet"></li>');
-  let $iconLike = $(`<li class="fa fa-heart"></li><span class="tweet-likes">${tweetdata.likes}<span>`);
-  $tweetIcons.append($iconShare, $iconRetweet, $iconLike);
+  const $tweetIcons = $('<ul class="tweet-icons"></ul>');
+  const $iconShare = $('<li class="fa fa-share"></li>');
+  const $iconRetweet = $('<li class="fa fa-retweet"></li>');
+  const $iconLike = $(`<li class="fa fa-heart like-tweet"></li>`).attr({"data-id": tweetData._id, "data-liked": tweetData.liked});
+  if (tweetData.liked) {
+    $iconLike.addClass("tweet-liked");
+  }
+  const $tweetLikes = $('<span class="tweet-likes"></span>').text(tweetData.likes);
+  $tweetIcons.append($iconShare, $iconRetweet, $iconLike, $tweetLikes);
   let $tweetFooter = $('<footer class="tweet-footer"></footer>').append($tweetAge, $tweetIcons);
   return $('<article class="tweet"></article>').append($tweetHeader, $tweetBody, $tweetFooter);
 }
@@ -71,7 +75,6 @@ function renderAllTweets(data, cb, location) {
 }
 
 $(document).ready(function() {
-
   function loadTweets() {
     $.ajax({
       url: '/tweets',
@@ -90,6 +93,7 @@ $(document).ready(function() {
       }, timeout);
     });
   }
+
 
   $("#submit-tweet").on('click', function(event) {
     event.preventDefault();
@@ -122,4 +126,22 @@ $(document).ready(function() {
     $newTweet.find(".newtweet-textarea").focus();
   });
 
+  $("#tweet-log").on("click", ".like-tweet", function () {
+    const isLiked = $(this).data("liked");
+    if (isLiked) {
+      $(this).data("liked", "");
+      $(this).removeClass("tweet-liked");
+      $(this).closest(".tweet-icons").find(".tweet-likes").html(function(i, val) { return Number(val) - 1; } );
+    } else if (!isLiked) {
+      $(this).data("liked", true);
+      $(this).addClass("tweet-liked");
+      $(this).closest(".tweet-icons").find(".tweet-likes").html(function(i, val) { return Number(val) + 1; } );
+    }
+    $.ajax({
+      data: {"tweetId": $(this).data("id"),
+        "isLiked": isLiked },
+      method: 'POST',
+      url: '/tweets/like'
+    });
+  });
 });
